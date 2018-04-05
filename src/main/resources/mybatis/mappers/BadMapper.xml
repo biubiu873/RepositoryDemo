@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fcr.qa3.mapper.BadMapper" >
+  <resultMap id="BaseResultMap" type="cn.fcr.qa3.pojo.Bad" >
+    <result column="bad_type" property="badType" jdbcType="VARCHAR" />
+    <result column="bad_id" property="badId" jdbcType="INTEGER" />
+    <result column="bad_reason" property="badReason" jdbcType="VARCHAR" />
+    <result column="add_user_id" property="addUserId" jdbcType="INTEGER" />
+    <result column="bad_number" property="badNumber" jdbcType="INTEGER" />
+    <result column="bad_struts" property="badStruts" jdbcType="VARCHAR" />
+    <result column="bad_time" property="badTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.fcr.qa3.pojo.Bad" >
+    insert into tb_bad (bad_type, bad_id, bad_reason, 
+      add_user_id, bad_number, bad_struts, 
+      bad_time)
+    values (#{badType,jdbcType=VARCHAR}, #{badId,jdbcType=INTEGER}, #{badReason,jdbcType=VARCHAR}, 
+      #{addUserId,jdbcType=INTEGER}, #{badNumber,jdbcType=INTEGER}, #{badStruts,jdbcType=VARCHAR}, 
+      #{badTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.fcr.qa3.pojo.Bad" >
+    insert into tb_bad
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="badType != null" >
+        bad_type,
+      </if>
+      <if test="badId != null" >
+        bad_id,
+      </if>
+      <if test="badReason != null" >
+        bad_reason,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="badNumber != null" >
+        bad_number,
+      </if>
+      <if test="badStruts != null" >
+        bad_struts,
+      </if>
+      <if test="badTime != null" >
+        bad_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="badType != null" >
+        #{badType,jdbcType=VARCHAR},
+      </if>
+      <if test="badId != null" >
+        #{badId,jdbcType=INTEGER},
+      </if>
+      <if test="badReason != null" >
+        #{badReason,jdbcType=VARCHAR},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=INTEGER},
+      </if>
+      <if test="badNumber != null" >
+        #{badNumber,jdbcType=INTEGER},
+      </if>
+      <if test="badStruts != null" >
+        #{badStruts,jdbcType=VARCHAR},
+      </if>
+      <if test="badTime != null" >
+        #{badTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fcr.qa3.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.fcr.qa3.pojo.UserInfo" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_status" property="userStatus" jdbcType="VARCHAR" />
+    <result column="user_grade" property="userGrade" jdbcType="VARCHAR" />
+    <result column="user_privacy" property="userPrivacy" jdbcType="INTEGER" />
+    <result column="user_login_time" property="userLoginTime" jdbcType="TIMESTAMP" />
+    <result column="user_fans_id" property="userFansId" jdbcType="INTEGER" />
+    <result column="user_user_subscribe_id" property="userUserSubscribeId" jdbcType="INTEGER" />
+    <result column="user_question_subscribe_id" property="userQuestionSubscribeId" jdbcType="INTEGER" />
+    <result column="bad_bumber" property="badBumber" jdbcType="INTEGER" />
+    <result column="user_massage" property="userMassage" jdbcType="VARCHAR" />
+    <result column="user_ip" property="userIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_status, user_grade, user_privacy, user_login_time, user_fans_id, user_user_subscribe_id, 
+    user_question_subscribe_id, bad_bumber, user_massage, user_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user_info
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_user_info
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.fcr.qa3.pojo.UserInfo" >
+    insert into tb_user_info (user_id, user_status, user_grade, 
+      user_privacy, user_login_time, user_fans_id, 
+      user_user_subscribe_id, user_question_subscribe_id, 
+      bad_bumber, user_massage, user_ip
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userStatus,jdbcType=VARCHAR}, #{userGrade,jdbcType=VARCHAR}, 
+      #{userPrivacy,jdbcType=INTEGER}, #{userLoginTime,jdbcType=TIMESTAMP}, #{userFansId,jdbcType=INTEGER}, 
+      #{userUserSubscribeId,jdbcType=INTEGER}, #{userQuestionSubscribeId,jdbcType=INTEGER}, 
+      #{badBumber,jdbcType=INTEGER}, #{userMassage,jdbcType=VARCHAR}, #{userIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.fcr.qa3.pojo.UserInfo" >
+    insert into tb_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="userGrade != null" >
+        user_grade,
+      </if>
+      <if test="userPrivacy != null" >
+        user_privacy,
+      </if>
+      <if test="userLoginTime != null" >
+        user_login_time,
+      </if>
+      <if test="userFansId != null" >
+        user_fans_id,
+      </if>
+      <if test="userUserSubscribeId != null" >
+        user_user_subscribe_id,
+      </if>
+      <if test="userQuestionSubscribeId != null" >
+        user_question_subscribe_id,
+      </if>
+      <if test="badBumber != null" >
+        bad_bumber,
+      </if>
+      <if test="userMassage != null" >
+        user_massage,
+      </if>
+      <if test="userIp != null" >
+        user_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userGrade != null" >
+        #{userGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="userPrivacy != null" >
+        #{userPrivacy,jdbcType=INTEGER},
+      </if>
+      <if test="userLoginTime != null" >
+        #{userLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userFansId != null" >
+        #{userFansId,jdbcType=INTEGER},
+      </if>
+      <if test="userUserSubscribeId != null" >
+        #{userUserSubscribeId,jdbcType=INTEGER},
+      </if>
+      <if test="userQuestionSubscribeId != null" >
+        #{userQuestionSubscribeId,jdbcType=INTEGER},
+      </if>
+      <if test="badBumber != null" >
+        #{badBumber,jdbcType=INTEGER},
+      </if>
+      <if test="userMassage != null" >
+        #{userMassage,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null" >
+        #{userIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.fcr.qa3.pojo.UserInfo" >
+    update tb_user_info
+    <set >
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userGrade != null" >
+        user_grade = #{userGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="userPrivacy != null" >
+        user_privacy = #{userPrivacy,jdbcType=INTEGER},
+      </if>
+      <if test="userLoginTime != null" >
+        user_login_time = #{userLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userFansId != null" >
+        user_fans_id = #{userFansId,jdbcType=INTEGER},
+      </if>
+      <if test="userUserSubscribeId != null" >
+        user_user_subscribe_id = #{userUserSubscribeId,jdbcType=INTEGER},
+      </if>
+      <if test="userQuestionSubscribeId != null" >
+        user_question_subscribe_id = #{userQuestionSubscribeId,jdbcType=INTEGER},
+      </if>
+      <if test="badBumber != null" >
+        bad_bumber = #{badBumber,jdbcType=INTEGER},
+      </if>
+      <if test="userMassage != null" >
+        user_massage = #{userMassage,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null" >
+        user_ip = #{userIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.fcr.qa3.pojo.UserInfo" >
+    update tb_user_info
+    set user_status = #{userStatus,jdbcType=VARCHAR},
+      user_grade = #{userGrade,jdbcType=VARCHAR},
+      user_privacy = #{userPrivacy,jdbcType=INTEGER},
+      user_login_time = #{userLoginTime,jdbcType=TIMESTAMP},
+      user_fans_id = #{userFansId,jdbcType=INTEGER},
+      user_user_subscribe_id = #{userUserSubscribeId,jdbcType=INTEGER},
+      user_question_subscribe_id = #{userQuestionSubscribeId,jdbcType=INTEGER},
+      bad_bumber = #{badBumber,jdbcType=INTEGER},
+      user_massage = #{userMassage,jdbcType=VARCHAR},
+      user_ip = #{userIp,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fcr.qa3.mapper.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="cn.fcr.qa3.pojo.Question" >
+    <id column="question_id" property="questionId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="anwer_id" property="anwerId" jdbcType="INTEGER" />
+    <result column="question_type" property="questionType" jdbcType="VARCHAR" />
+    <result column="question_content" property="questionContent" jdbcType="VARCHAR" />
+    <result column="question_title" property="questionTitle" jdbcType="VARCHAR" />
+    <result column="question_img" property="questionImg" jdbcType="VARCHAR" />
+    <result column="question_time" property="questionTime" jdbcType="TIMESTAMP" />
+    <result column="subscribe_number" property="subscribeNumber" jdbcType="INTEGER" />
+    <result column="great_number" property="greatNumber" jdbcType="INTEGER" />
+    <result column="bad_number" property="badNumber" jdbcType="INTEGER" />
+    <result column="question_status" property="questionStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    question_id, user_id, anwer_id, question_type, question_content, question_title, 
+    question_img, question_time, subscribe_number, great_number, bad_number, question_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_question
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_question
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.fcr.qa3.pojo.Question" >
+    insert into tb_question (question_id, user_id, anwer_id, 
+      question_type, question_content, question_title, 
+      question_img, question_time, subscribe_number, 
+      great_number, bad_number, question_status
+      )
+    values (#{questionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{anwerId,jdbcType=INTEGER}, 
+      #{questionType,jdbcType=VARCHAR}, #{questionContent,jdbcType=VARCHAR}, #{questionTitle,jdbcType=VARCHAR}, 
+      #{questionImg,jdbcType=VARCHAR}, #{questionTime,jdbcType=TIMESTAMP}, #{subscribeNumber,jdbcType=INTEGER}, 
+      #{greatNumber,jdbcType=INTEGER}, #{badNumber,jdbcType=INTEGER}, #{questionStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.fcr.qa3.pojo.Question" >
+    insert into tb_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="anwerId != null" >
+        anwer_id,
+      </if>
+      <if test="questionType != null" >
+        question_type,
+      </if>
+      <if test="questionContent != null" >
+        question_content,
+      </if>
+      <if test="questionTitle != null" >
+        question_title,
+      </if>
+      <if test="questionImg != null" >
+        question_img,
+      </if>
+      <if test="questionTime != null" >
+        question_time,
+      </if>
+      <if test="subscribeNumber != null" >
+        subscribe_number,
+      </if>
+      <if test="greatNumber != null" >
+        great_number,
+      </if>
+      <if test="badNumber != null" >
+        bad_number,
+      </if>
+      <if test="questionStatus != null" >
+        question_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="anwerId != null" >
+        #{anwerId,jdbcType=INTEGER},
+      </if>
+      <if test="questionType != null" >
+        #{questionType,jdbcType=VARCHAR},
+      </if>
+      <if test="questionContent != null" >
+        #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="questionTitle != null" >
+        #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionImg != null" >
+        #{questionImg,jdbcType=VARCHAR},
+      </if>
+      <if test="questionTime != null" >
+        #{questionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subscribeNumber != null" >
+        #{subscribeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="greatNumber != null" >
+        #{greatNumber,jdbcType=INTEGER},
+      </if>
+      <if test="badNumber != null" >
+        #{badNumber,jdbcType=INTEGER},
+      </if>
+      <if test="questionStatus != null" >
+        #{questionStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.fcr.qa3.pojo.Question" >
+    update tb_question
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="anwerId != null" >
+        anwer_id = #{anwerId,jdbcType=INTEGER},
+      </if>
+      <if test="questionType != null" >
+        question_type = #{questionType,jdbcType=VARCHAR},
+      </if>
+      <if test="questionContent != null" >
+        question_content = #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="questionTitle != null" >
+        question_title = #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionImg != null" >
+        question_img = #{questionImg,jdbcType=VARCHAR},
+      </if>
+      <if test="questionTime != null" >
+        question_time = #{questionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subscribeNumber != null" >
+        subscribe_number = #{subscribeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="greatNumber != null" >
+        great_number = #{greatNumber,jdbcType=INTEGER},
+      </if>
+      <if test="badNumber != null" >
+        bad_number = #{badNumber,jdbcType=INTEGER},
+      </if>
+      <if test="questionStatus != null" >
+        question_status = #{questionStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.fcr.qa3.pojo.Question" >
+    update tb_question
+    set user_id = #{userId,jdbcType=INTEGER},
+      anwer_id = #{anwerId,jdbcType=INTEGER},
+      question_type = #{questionType,jdbcType=VARCHAR},
+      question_content = #{questionContent,jdbcType=VARCHAR},
+      question_title = #{questionTitle,jdbcType=VARCHAR},
+      question_img = #{questionImg,jdbcType=VARCHAR},
+      question_time = #{questionTime,jdbcType=TIMESTAMP},
+      subscribe_number = #{subscribeNumber,jdbcType=INTEGER},
+      great_number = #{greatNumber,jdbcType=INTEGER},
+      bad_number = #{badNumber,jdbcType=INTEGER},
+      question_status = #{questionStatus,jdbcType=VARCHAR}
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+</mapper>

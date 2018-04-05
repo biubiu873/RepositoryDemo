@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="MyWebApp" version="2.5">
+	<!-- 这个没有实际性的作用 -->
+	<display-name>fcr-springmvc-qa</display-name>
+	
+	
+	
+	<!-- 引入spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- 这个* 号把所有的spring引入进来惹 -->
+		<param-value>classpath:spring/applicationContext*.xml</param-value>
+	</context-param>
+	<!--Spring的ApplicationContext 载入 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 编码过滤器，以UTF8编码 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 配置SpringMVC -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!-- 配置自定义路径下的springmvc文件 
+					本来是叫做springmvc-servlet，而且路径要固定
+			-->
+			<param-value>classpath:spring/springmvc-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	
+	<error-page>
+    	<error-code>404</error-code>
+    	<location>/html/404.html</location>
+	</error-page>
+	
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!-- /会拦截所有请求，所以静态资源无法访问，可以类似*.do拦截特定请求
+			或者在springmvc文件【本项目qa-servlet】中加入
+						<mvc:default-servlet-handler/>
+			并且在DispatcherServlet之前加上静态资源映射（本文最前面）
+		 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

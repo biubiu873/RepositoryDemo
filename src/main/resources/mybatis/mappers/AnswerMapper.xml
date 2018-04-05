@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fcr.qa3.mapper.AnswerMapper" >
+  <resultMap id="BaseResultMap" type="cn.fcr.qa3.pojo.Answer" >
+    <id column="answer_id" property="answerId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="question_id" property="questionId" jdbcType="INTEGER" />
+    <result column="answer_type" property="answerType" jdbcType="VARCHAR" />
+    <result column="answer_img" property="answerImg" jdbcType="VARCHAR" />
+    <result column="answer_content" property="answerContent" jdbcType="VARCHAR" />
+    <result column="answer_time" property="answerTime" jdbcType="TIMESTAMP" />
+    <result column="bad_number" property="badNumber" jdbcType="INTEGER" />
+    <result column="subscribe_number" property="subscribeNumber" jdbcType="INTEGER" />
+    <result column="great_number" property="greatNumber" jdbcType="INTEGER" />
+    <result column="answer_status" property="answerStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    answer_id, user_id, question_id, answer_type, answer_img, answer_content, answer_time, 
+    bad_number, subscribe_number, great_number, answer_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_answer
+    where answer_id = #{answerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_answer
+    where answer_id = #{answerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.fcr.qa3.pojo.Answer" >
+    insert into tb_answer (answer_id, user_id, question_id, 
+      answer_type, answer_img, answer_content, 
+      answer_time, bad_number, subscribe_number, 
+      great_number, answer_status)
+    values (#{answerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{questionId,jdbcType=INTEGER}, 
+      #{answerType,jdbcType=VARCHAR}, #{answerImg,jdbcType=VARCHAR}, #{answerContent,jdbcType=VARCHAR}, 
+      #{answerTime,jdbcType=TIMESTAMP}, #{badNumber,jdbcType=INTEGER}, #{subscribeNumber,jdbcType=INTEGER}, 
+      #{greatNumber,jdbcType=INTEGER}, #{answerStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.fcr.qa3.pojo.Answer" >
+    insert into tb_answer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="answerId != null" >
+        answer_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="answerType != null" >
+        answer_type,
+      </if>
+      <if test="answerImg != null" >
+        answer_img,
+      </if>
+      <if test="answerContent != null" >
+        answer_content,
+      </if>
+      <if test="answerTime != null" >
+        answer_time,
+      </if>
+      <if test="badNumber != null" >
+        bad_number,
+      </if>
+      <if test="subscribeNumber != null" >
+        subscribe_number,
+      </if>
+      <if test="greatNumber != null" >
+        great_number,
+      </if>
+      <if test="answerStatus != null" >
+        answer_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="answerId != null" >
+        #{answerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="questionId != null" >
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="answerType != null" >
+        #{answerType,jdbcType=VARCHAR},
+      </if>
+      <if test="answerImg != null" >
+        #{answerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="answerContent != null" >
+        #{answerContent,jdbcType=VARCHAR},
+      </if>
+      <if test="answerTime != null" >
+        #{answerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="badNumber != null" >
+        #{badNumber,jdbcType=INTEGER},
+      </if>
+      <if test="subscribeNumber != null" >
+        #{subscribeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="greatNumber != null" >
+        #{greatNumber,jdbcType=INTEGER},
+      </if>
+      <if test="answerStatus != null" >
+        #{answerStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.fcr.qa3.pojo.Answer" >
+    update tb_answer
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="questionId != null" >
+        question_id = #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="answerType != null" >
+        answer_type = #{answerType,jdbcType=VARCHAR},
+      </if>
+      <if test="answerImg != null" >
+        answer_img = #{answerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="answerContent != null" >
+        answer_content = #{answerContent,jdbcType=VARCHAR},
+      </if>
+      <if test="answerTime != null" >
+        answer_time = #{answerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="badNumber != null" >
+        bad_number = #{badNumber,jdbcType=INTEGER},
+      </if>
+      <if test="subscribeNumber != null" >
+        subscribe_number = #{subscribeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="greatNumber != null" >
+        great_number = #{greatNumber,jdbcType=INTEGER},
+      </if>
+      <if test="answerStatus != null" >
+        answer_status = #{answerStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where answer_id = #{answerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.fcr.qa3.pojo.Answer" >
+    update tb_answer
+    set user_id = #{userId,jdbcType=INTEGER},
+      question_id = #{questionId,jdbcType=INTEGER},
+      answer_type = #{answerType,jdbcType=VARCHAR},
+      answer_img = #{answerImg,jdbcType=VARCHAR},
+      answer_content = #{answerContent,jdbcType=VARCHAR},
+      answer_time = #{answerTime,jdbcType=TIMESTAMP},
+      bad_number = #{badNumber,jdbcType=INTEGER},
+      subscribe_number = #{subscribeNumber,jdbcType=INTEGER},
+      great_number = #{greatNumber,jdbcType=INTEGER},
+      answer_status = #{answerStatus,jdbcType=VARCHAR}
+    where answer_id = #{answerId,jdbcType=INTEGER}
+  </update>
+</mapper>

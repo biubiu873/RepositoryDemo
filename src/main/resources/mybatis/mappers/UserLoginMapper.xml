@@ -21,8 +21,40 @@
   <select id="selectUserLoginCount" resultType="int">
   	select count(*) from tb_user_login
   </select>
+  	
+  	
   
   
+  <!-- 根据某个信息查是否有该用户 -->
+  <select id="selectUser" parameterType="cn.fcr.qa3.pojo.UserLogin" resultType="int">
+  	select count(*) from tb_user_login 
+  		<where>
+	  		<if test="userPhone !=null and userPhone !=''">
+	  			and user_phone=#{userPhone}
+	  		</if>
+	  		<if test="userName !=null and userName !=''">
+	  			and user_name=#{userName}
+	  		</if>
+	  		<if test="userEmail !=null and userEmail !=''">
+	  			and user_email=#{userEmail}
+	  		</if>
+	  		<if test="userId !=null and userId !=''">
+	  			and user_id=#{userId}
+	  		</if>
+	  		<if test="userImg !=null and userImg !=''">
+	  			and user_img=#{userImg}
+	  		</if>
+	  		<if test="userType !=null and userType !=''">
+	  			and user_type=#{userType}
+	  		</if>
+	  		<if test="password !=null and password !=''">
+	  			and password=#{password}
+	  		</if>
+	  		<if test="userDescribe !=null and uuserDescribe !=''">
+	  			and user_describe=#{userDescribe}
+	  		</if>
+  	</where>
+  </select>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

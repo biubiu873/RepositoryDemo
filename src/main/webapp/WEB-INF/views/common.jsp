@@ -8,12 +8,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="" />
+		<script type="text/javascript">
+			alert("sss");
+		</script>
 	</head>
 	
 	<bady>
 		
 		<div style="font-size: 35px; text-align: center; height: 100px;width: 100%;">
-			这里是				的测试页面
+			这里是	<p>${requestScope.registerFlag }</p>			的测试页面
 		</div>
 		
 		<img src="/myImages/bg/bg03.jpg" class="img-responsive" alt="Responsive image">

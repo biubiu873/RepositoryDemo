@@ -2,6 +2,8 @@ package cn.fcr.service;
 
 import org.springframework.stereotype.Service;
 
+import cn.fcr.qa3.pojo.UserLogin;
+
 
 public interface UserService {
 	
@@ -10,4 +12,8 @@ public interface UserService {
 	
 	//最低条件注册
 	public int UserRegister(String username,String password,String email);
+	
+	//查用户邮箱，看是否已经被注册
+	public int selectUser(UserLogin userLogin);
+	
 }

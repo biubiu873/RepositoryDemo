@@ -1,5 +1,6 @@
 package cn.fcr.service.impl;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,13 @@ public class UserServiceImpl implements UserService{
 		
 		int n=userLoginMapper.insert(userLogin);
 		return n;
+	}
+
+	
+	public int selectUser(UserLogin userLogin) {
+		int count=userLoginMapper.selectUser(userLogin);
+			System.out.println(count);
+		return count;
 	}
 	
 	

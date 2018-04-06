@@ -8,6 +8,7 @@
 <title>登录/注册</title>
 
 <link href="/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<script src="/js/jquery-1.11.1.min.js"></script>
 
 <style type="text/css">
 
@@ -321,15 +322,10 @@
   </script>
 	
 	
-
 	
-	
-	
-	
-
-
 </head>
 <body>
+
 	
 	<div class="main1">
 		
@@ -382,13 +378,13 @@
 		
 		
 			<!-- 注册表单 -->
-			<form id="form1" method="post" action="register">
+			<form id="form1">
 	
 				<ul>
 	
 					<li>
 	
-						<label>姓名：</label>
+						<label>用户名：</label>
 	
 						<input type="text" name="yourname" placeholder="请输入用户名"  onblur="checkna()" required/><span class="tips" id="divname">长度1~12个字符</span>
 	
@@ -414,17 +410,40 @@
 	
 						<label>电子邮箱：</label>
 	
-						<input type="text" name="youremail" placeholder="请输入你的邮箱" onblur="checkmail()" required/><span class="tips" id="divmail"></span>
+						<input type="text" name="youremail" placeholder="这将是你的登录id" onblur="checkmail()" required/><span class="tips" id="divmail"></span>
 	
 					</li>
 					
 					<li>
-						<button  type="submit" class="btn btn-primary" >提交</button>
+						<button type="button" onclick="register()"  class="btn btn-primary">ajax提交</button>
 						<button type="reset" class="btn btn-default" >重置</button>
 						
 					</li>
 				</ul>
 			</form>
+			
+			<script type="text/javascript">
+			function register(){
+				
+				$.post('register',$('#form1').serialize(),function(data){
+					if(data=="0"){
+						alert("注册成功,去登陆吧！");
+					}
+					if(data=="1"){
+						alert("邮箱已被使用，请重新输入");
+					}
+					if(data=="2"){
+						alert("作者的垃圾代码出错了");
+					}
+					
+				},'text');
+					
+				
+			}
+					
+				
+				
+			</script>
 			
 			<!-- 去登陆页面的锚点按钮 -->
 			<a href="javascript:void(0)" onclick="document.getElementById('login').scrollIntoView();"><button type="button" class="btn btn-info"   style="margin-top: 30px;">去登录</button></a>

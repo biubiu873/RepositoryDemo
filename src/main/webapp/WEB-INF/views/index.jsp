@@ -237,7 +237,7 @@
 			<div class="sidebar-menu">
 				<header class="logo">
 					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
-					<a href="#"> <span id="logo"> <h1 style="color: #FCFCFC; font-size: 22px;"><img alt="Q&A&nbsp;" style="background-color:#fff; height: 35px;width:35px;" src="/myImages/Icon/logo.png">有问必答</h1></span>
+					<a href="#"> <span id="logo"> <h1 style="color: #FCFCFC; font-size: 22px;"><img alt="Q&A&nbsp;" style="background-color:#fff;  height:30px;width:30px;" src="/myImages/Icon/logo.png">有问必答</h1></span>
 						<!--<img id="logo" src="" alt="Logo"/>-->
 					</a>
 				</header>

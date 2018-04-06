@@ -381,7 +381,7 @@
 			</div>
 		
 		
-			
+			<!-- 注册表单 -->
 			<form id="form1" method="post" action="register">
 	
 				<ul>

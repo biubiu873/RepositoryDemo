@@ -86,25 +86,25 @@
 								<ul class="nofitications-dropdown">
 									
 									
-									<li class="dropdown note" style="width: 160px;">
-										<a href="Index" style="text-align:center; color: #fff;font-size: 18px;">首&nbsp;页</a>
+									<li class="dropdown note" style="width: 170px;">
+										<a href="index" style="text-align:center; color:#fff;font-size: 18px;"><img src="/myImages/Icon/bull.png" alt="首页" class="img-circle" style="height: 35px; background-color:#FFE1FF; width: 35px">&nbsp;首&nbsp;页</a>
 									
 									</li>
 									
-									<li class="dropdown note" style="width: 160px;">
-										<a href="QuestionAndAnswer" style="text-align:center; color: #fff;font-size: 18px;">问&nbsp;答</a>
+									<li class="dropdown note" style="width: 170px;">
+										<a href="questionAndAnswer" style="text-align:center;color: #fff; font-size: 18px;"><img alt="问答" src="/myImages/Icon/owl.png" style="height: 22px;width: 22px">&nbsp;问&nbsp;答</a>
 									
 									</li>
 									
-									<li class="dropdown note" style="width: 160px;">
-										<a href="Article" style="text-align:center; color: #fff;font-size: 18px;">文&nbsp;章</a>
+									<li class="dropdown note" style="width: 170px;">
+										<a href="article" style="text-align:center;color: #fff;font-size: 18px;"><img alt="文章" src="/myImages/Icon/panda.png" style="height: 22px;width: 22px">&nbsp;文&nbsp;章</a>
 										
 									</li>
 									
 									<li class="dropdown note">
-										<a href="/jsp/Relax.jsp" style="padding-top:28%; text-align:center; color: #fff;font-size: 16px;">放&nbsp;松</a>
+										<a href="/jsp/sonPage/Relax.jsp"  target="_blank" style="text-align:center;color: #fff;font-size: 18px;"><img alt="放松" src="/myImages/Icon/emoji-20.png" style="height: 22px;width: 22px">&nbsp;放&nbsp;松</a>
 									</li>
-									<li class="dropdown note">
+									<!-- <li class="dropdown note">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope-o"></i> <span class="badge">3</span></a>
 
 										<ul class="dropdown-menu two first">
@@ -196,11 +196,12 @@
 												</div>
 											</li>
 										</ul>
+									</li> -->
+									<li class="dropdown note" style="width: 200px;">
+										<a href="registerAndLogIn" style="text-align:center; color: #fff;font-size: 18px;"><img alt="首页" src="/myImages/Icon/donkey.png" style="height: 22px;width: 22px">&nbsp;登录/注册</a>
+										
 									</li>
-									<li class="dropdown note">
-											<a href="RegisterAndLogIn" style="text-align:center; color: #fff;font-size: 16px;">登录/注册</a>
-										</div>
-									</li>
+									
 									
 									<div class="clearfix"></div>
 								</ul>
@@ -221,7 +222,7 @@
 						
 						
 						
-					<iframe src="/jsp/Relax.jsp" frameborder="0" scrolling="yes" height="100%" width="100%"></iframe>
+					<iframe src="/jsp/sonPage/Relax.jsp" frameborder="0" scrolling="yes" height="100%" width="100%"></iframe>
 					
 					
 						

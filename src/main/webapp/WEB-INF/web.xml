@@ -47,10 +47,10 @@
 		</init-param>
 	</servlet>
 	
-	<error-page>
+	<!-- <error-page>
     	<error-code>404</error-code>
     	<location>/html/404.html</location>
-	</error-page>
+	</error-page> -->
 	
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>

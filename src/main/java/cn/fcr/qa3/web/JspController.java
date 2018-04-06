@@ -19,8 +19,35 @@ public class JspController {
 	@Autowired
 	public UserService userService;
 	
+	@RequestMapping("qa")
+	public String toIndex(){
+		return "index";
+	}
+	@RequestMapping("index")
+	public String toIndex2(){
+		return "index";
+	}
+	
+	@RequestMapping(value="article")
+	public String toArticle(){
+		
+		return "parentPage/article";
+	}
+	
+	@RequestMapping(value="questionAndAnswer")
+	public String toQuestionAndAnswer(){
+		
+		return "parentPage/questionAndAnswer";
+	}
+	
+	@RequestMapping(value="registerAndLogIn")
+	public String toRegisterAndLogIn(){
+		
+		return "parentPage/registerAndLogin";
+	}
+	
 	//注册测试
-	@RequestMapping(value="user/register")
+	@RequestMapping(value="register")
 	//	这种格式怕不稳定（）public String UserRegiste(String yourname,String yourpass,String youremail){
 	public String UserRegiste(HttpServletRequest request){	
 		String userName=request.getParameter("yourname");
@@ -36,7 +63,7 @@ public class JspController {
 		System.out.println("yourpass");
 		System.out.println("youremail");
 		System.out.println(n);
-		return "/jsp/common";
+		return "common";
 	}
 	
 }

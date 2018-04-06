@@ -35,7 +35,7 @@
       bad_bumber, user_massage, user_ip
       )
     values (#{userId,jdbcType=INTEGER}, #{userStatus,jdbcType=VARCHAR}, #{userGrade,jdbcType=VARCHAR}, 
-      #{userPrivacy,jdbcType=INTEGER}, #{userLoginTime,jdbcType=TIMESTAMP}, #{userFansId,jdbcType=INTEGER}, 
+      #{userPrivacy,jdbcType=INTEGER}, now(), #{userFansId,jdbcType=INTEGER}, 
       #{userUserSubscribeId,jdbcType=INTEGER}, #{userQuestionSubscribeId,jdbcType=INTEGER}, 
       #{badBumber,jdbcType=INTEGER}, #{userMassage,jdbcType=VARCHAR}, #{userIp,jdbcType=VARCHAR}
       )

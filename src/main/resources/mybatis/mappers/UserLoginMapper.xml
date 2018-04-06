@@ -62,6 +62,14 @@
     from tb_user_login
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user_login
+    where user_email = #{userEmail,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_user_login
     where user_id = #{userId,jdbcType=INTEGER}

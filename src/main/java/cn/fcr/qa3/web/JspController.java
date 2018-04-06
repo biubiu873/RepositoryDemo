@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cn.fcr.qa3.pojo.UserInfo;
 import cn.fcr.qa3.pojo.UserLogin;
 import cn.fcr.service.UserService;
 
@@ -32,27 +33,29 @@ public class JspController {
 		String userName=request.getParameter("yourname");
 		String password=request.getParameter("yourpass");
 		String email=request.getParameter("youremail");
+		//用户ip
+		String ip=request.getRemoteAddr();
 		
+		//查询email是否给注册过
 		UserLogin userLogin=new UserLogin();
 		userLogin.setUserEmail(email);
 		int userExis=userService.selectUser(userLogin);
 		
+		
+		//如果email被注册过，返回值大于0
 		if(userExis>0){
-			
 			System.out.println("注册失败，因为邮箱已经被占用");
 			response.getWriter().write(String.valueOf(1));
 		}
 		else {
-			//此方法返回插入数据的id
-			int n=userService.UserRegister(userName, password, email);
-			
+			//此方法返回受影响行数
+			int n=userService.UserRegister(userName, password, email,ip);
 			
 			System.out.println("=====");System.out.println("=====");System.out.println("=====");System.out.println("=====");System.out.println("=====");System.out.println("=====");
-			//System.out.println("用户ip地址：  "+request.getRemoteAddr());
 			System.out.println(userName);
 			System.out.println(password);
 			System.out.println(email);
-			System.out.println(n);
+			System.out.println("此次操作影响记录条数："+n);
 			if(n>0){
 				System.out.println("注册成功");
 				response.getWriter().write(String.valueOf(0));

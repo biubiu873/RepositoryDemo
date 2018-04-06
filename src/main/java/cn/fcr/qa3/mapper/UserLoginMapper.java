@@ -7,6 +7,8 @@ import cn.fcr.qa3.pojo.UserLogin;
 
 public interface UserLoginMapper {
 	
+	UserLogin selectByEmail(String userEmail);
+	
 	int selectUserLoginCount();
 	
 	int selectUser(UserLogin record);

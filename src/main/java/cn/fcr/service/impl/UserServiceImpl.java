@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService{
 	
 	public int selectUser(UserLogin userLogin) {
 		int count=userLoginMapper.selectUser(userLogin);
-			System.out.println(count);
+			System.out.println("查询到符合条件的用户："+count);
 		return count;
 	}
 	

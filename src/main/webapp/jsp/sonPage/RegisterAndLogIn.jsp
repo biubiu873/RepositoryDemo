@@ -335,19 +335,40 @@
 			<div style="height: 200px;">
 				
 			</div>
-			<form method="post" action="login">
+			<form id="loginForm">
 				<p class="title" style="color:#00868B;">用户登录</p>
 				<p>
-					<input type="text"  style=" height:35px; opacity:0.6;  border:none; width:75%; border-radius:5px;" name="username" placeholder="请输入用户名"  required/>
+					<input type="text"  style=" height:35px; opacity:0.8;  border:none; width:75%; border-radius:5px;" name="email" placeholder="请输入注册过的电子邮箱"  required/>
 				</p>
 				<p>
-					<input type="password" style=" height:35px; opacity:0.6; border:none; width:75%; border-radius:5px;  " name="password" placeholder="密码" required>
-				</p>
-				<p class="error">${requestScope.error }</p>
-				<p>
-					<input type="submit" style="margin-right: 100%;" value="登 录" class="btn btn-primary" />
+					<input type="password" style=" height:35px; opacity:0.8; border:none; width:75%; border-radius:5px;" name="password" placeholder="密码" required>
 				</p>
 			</form>
+			
+				<p>
+					<input type="button" onclick="login()" style="margin-right: 100%;" value="登 录" class="btn btn-primary" />
+				</p>
+			<script type="text/javascript">
+				function login(){
+					
+					$.post('login',$('#loginForm').serialize(),function(data){
+						
+
+						if(data=="0"){
+							alert("欢迎登录，我的小可爱！")
+							 parent.location.href="index";
+						}
+						if(data=="1"){
+							alert("这是一个未注册过的邮箱，请重新输入  或者  去注册！");
+						}
+						if(data=="2"){
+							alert("邮箱或密码错误，请重新输入！");
+						}
+						
+					},'text');
+				}
+			</script>
+			
 			
 			
 			<!-- 到注册页面的锚点 -->

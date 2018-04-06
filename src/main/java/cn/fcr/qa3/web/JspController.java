@@ -2,6 +2,7 @@ package cn.fcr.qa3.web;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,7 +46,9 @@ public class JspController {
 			//此方法返回插入数据的id
 			int n=userService.UserRegister(userName, password, email);
 			
+			
 			System.out.println("=====");System.out.println("=====");System.out.println("=====");System.out.println("=====");System.out.println("=====");System.out.println("=====");
+			//System.out.println("用户ip地址：  "+request.getRemoteAddr());
 			System.out.println(userName);
 			System.out.println(password);
 			System.out.println(email);
@@ -63,8 +66,42 @@ public class JspController {
 		
 	}
 	
+	@RequestMapping(value="sonPage/login")
+	public void Login(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
+		String email=request.getParameter("email");
+		System.out.println(email+" 用户在登录");
+		if(email!=""&&!email.equals(null)){
+			String password=request.getParameter("password");
+			UserLogin userLogin=new UserLogin();
+			userLogin.setUserEmail(email);
+			int userExis=userService.selectUser(userLogin);
+			if(userExis>0){
+				userLogin.setPassword(password);
+				userExis=userService.selectUser(userLogin);
+				if(userExis>0){
+					System.out.println("登录成功");
+					
+					request.setAttribute("userinfo",email);
+					response.getWriter().write(String.valueOf(0));
+					
+				}
+				else {
+					System.out.println("邮箱已注册，但是密码不对");
+					response.getWriter().write(String.valueOf(2));
+				}
+			}
+			else {
+				System.out.println("未找到该邮箱记录");
+				response.getWriter().write(String.valueOf(1));
+			}
+		}
+		else {
+			response.getWriter().write(String.valueOf(1));
+		}
+		
+	}
 	
-	
+
 	
 	
 	/*//注册测试

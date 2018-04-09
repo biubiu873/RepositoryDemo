@@ -1,6 +1,5 @@
 package cn.fcr.service.impl;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,9 @@ public class UserServiceImpl implements UserService{
 		userLogin.setUserName(username);
 		userLogin.setPassword(password);
 		userLogin.setUserEmail(email);
+		
+		//设置默认头像
+		userLogin.setUserImg("emoji-29.png");
 		//向user_login表插入数据
 		int n=userLoginMapper.insert(userLogin);
 		
@@ -66,6 +68,43 @@ public class UserServiceImpl implements UserService{
 		int count=userLoginMapper.selectUser(userLogin);
 			System.out.println("查询到符合条件的用户："+count);
 		return count;
+	}
+	
+	//返回用户信息
+	public UserLogin selectUserByEmail(String email) {
+		UserLogin userLogin2=userLoginMapper.selectByEmail(email);
+		
+		return userLogin2;
+	}
+	
+	//密码邮箱登录
+	public int login(String password, String email) {
+		int n=userLoginMapper.login(email, password);
+		return n;
+	}
+	
+	//根据id修改头像
+	public int updateUserImage(String userImg,Integer userId) {
+		UserLogin userLogin=new UserLogin();
+		userLogin.setUserImg(userImg);
+		userLogin.setUserId(userId);
+		int n=userLoginMapper.updateByPrimaryKeySelective(userLogin);
+		
+		return n;
+	}
+	
+	//根据id修改基本信息
+	public int updateUserLogin(String userName, String userPhone, String userEmail, String userDescribe, int userId) {
+		UserLogin userLogin=new UserLogin();
+		userLogin.setUserId(userId);
+		userLogin.setUserName(userName);
+		userLogin.setUserPhone(userPhone);
+		userLogin.setUserEmail(userEmail);
+		userLogin.setUserDescribe(userDescribe);
+		
+		int n=userLoginMapper.updateByPrimaryKeySelective(userLogin);
+		
+		return n;
 	}
 
 	

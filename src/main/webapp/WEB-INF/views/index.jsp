@@ -1,5 +1,6 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <html>
 
@@ -21,11 +22,13 @@
 		
 		<!-- Bootstrap Core CSS -->
 		<link href="/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+		<script type="text/javascript" src="/css/bootstrap/js/bootstrap.js"></script>
 		<!-- Custom CSS -->
 		<link href="/css/style.css" rel='stylesheet' type='text/css' />
 		<!-- Graph CSS -->
 		<link href="/css/font-awesome.css" rel="stylesheet">
 		<!-- jQuery -->
+		<script src="/js/jquery-1.11.1.min.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'>
 		<!-- lined-icons -->
 		<link rel="stylesheet" href="/css/icon-font.min.css" type='text/css' />
@@ -218,11 +221,11 @@
 					<!-- //header-ends -->
 					<div class="outter-wp" style="height: 620px; width: 100%">
 						
-<!--		======================================		正文			==============================================				-->
+<!--		======================================		下面是正文			==============================================				-->
 						
 						
 						
-					<iframe src="/jsp/sonPage/Relax.jsp" frameborder="0" scrolling="yes" height="100%" width="100%"></iframe>
+					<iframe src="/jsp/sonPage/QuestionAndAnswer.jsp" frameborder="0" scrolling="yes" height="100%" width="100%"></iframe>
 					
 					
 						
@@ -237,33 +240,51 @@
 			<div class="sidebar-menu">
 				<header class="logo">
 					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
-					<a href="#"> <span id="logo"> <h1 style="color: #FCFCFC; font-size: 22px;"><img alt="Q&A&nbsp;" style="background-color:#fff;  height:30px;width:30px;" src="/myImages/Icon/logo.png">有问必答</h1></span>
+					<a href="#"> <span id="logo"><h1 style="color: #FCFCFC; font-size: 24px;"><img alt="Q&A&nbsp;" style="background-color:#fff;  height:30px;width:30px;" src="/myImages/Icon/logo.png">有问必答</h1></span>
 						<!--<img id="logo" src="" alt="Logo"/>-->
 					</a>
 				</header>
 				<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
 				<!--/down-->
+				
 				<div class="down">
-					<a href="#"><img style="width: 50px;height: 50px;" src="/myImages/Icon/UserNoLogin.png.png"></a>
-					<a href="#"><span class="name-caret">&nbsp;大白兔</span></a>
-					<p>爱吃胡萝卜</p>
+					<!--未登录时显示提示登录信息 	登录后显示用户名 -->
+					<%
+						String userName=(String)session.getAttribute("userName");
+						if(userName==""||userName==null){
+							session.setAttribute("loginflag", "点我，给你看个宝贝！");
+							session.setAttribute("userImg", "emoji-14.png");
+						}
+						else{
+							session.setAttribute("loginflag", "");
+						}
+					%>
+					
+					<!-- 头像 -->
+					<a href="#" onclick="openUserImgModel()"><img style="width: 50px;height: 50px;" src="/myImages/userImages/${userImg}"></a>
+					
+					<a href="#" onclick="openUserInfoModel()"><span class="name-caret"><a href="registerAndLogIn">${loginflag}</a>&nbsp;${userName}</span></a>
+					<!-- 签名 -->
+					<p>${userDescribe }</p>
+					
 					<ul>
 						<li>
-							<a class="tooltips" href="#"><span>&nbsp;修改资料</span><i class="lnr lnr-cog"></i></a>
+							<a  onclick="openUserLogInModel()" class="tooltips" href="#"><span>&nbsp;修改资料</span><i class="lnr lnr-cog"></i></a>
 						</li>
 						<li>
-							<a class="tooltips" href="#"><span>&nbsp;退出</span><i class="lnr lnr-power-switch"></i></a>
+							<a class="tooltips" href="logout"><span>&nbsp;退出</span><i class="lnr lnr-power-switch"></i></a>
 						</li>
 					</ul>
 				</div>
 				<!--//down-->
 				
+		
 				<!-- 左边的导航 -->
 				<div class="menu">
 					<ul id="menu">
 					
 						<li>
-							<a href="typography.html"><i class="lnr lnr-pencil"></i> <span>&nbsp;提问</span></a>
+							<a href="typography.html"><i class="lnr lnr-pencil"></i> <span>&nbsp;发布</span></a>
 						</li>
 						
 						<li>
@@ -274,7 +295,7 @@
 							<a href="#"><i class="fa fa-file-text-o"></i><span>&nbsp;收藏</span><span class="fa fa-angle-right" style="float: right"></span></a>
 							<ul id="menu-academico-sub">
 								<li id="menu-academico-boletim">
-									<a href="validation.html">&nbsp;问题</a>
+									<a href="#">&nbsp;问题</a>
 								</li>
 								<li id="menu-academico-boletim">
 									<a href="validation.html">&nbsp;文章</a>
@@ -300,7 +321,7 @@
 							<a href="#"><i class="fa fa-smile-o"></i><span>&nbsp;关注</span><span class="fa fa-angle-double-right" style="float: right"></span></a>
 							<ul id="menu-comunicacao-sub">
 								<li id="menu-mensagens" style="width:120px">
-									<a href="project.html">&nbsp;我关注的<i class="fa fa-angle-right" style="float: right; margin-right: -8px; margin-top: 2px;"></i></a>
+									<a href="#">&nbsp;我的关注<i class="fa fa-angle-right" style="float:right; margin-right:8px; margin-top: 2px; "></i></a>
 									<ul id="menu-mensagens-sub">
 										<li id="menu-mensagens-enviadas" style="width:130px">
 											<a href="ribbon.html">&nbsp;用户</a>
@@ -345,6 +366,231 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
+		
+		
+		<!-- ==================================     资料修改，信息显示模态框和script        ========================== -->		
+				<script type="text/javascript">
+				
+				//点击头像
+				function openUserImgModel(){
+					//显示详细信息模态框
+					var userName="${sessionScope.userName}";
+					if(userName==""||userName==null){
+						alert("您还没有登录哦！");
+					}
+					else{
+						$('#userImgModel').modal('show');
+					}
+				}
+				
+				//点击用户名
+				function openUserInfoModel(){
+					//显示详细信息模态框
+					var userName="${sessionScope.userName}";
+					if(userName==""||userName==null){
+						alert("您还没有登录哦！");
+					}
+					else{
+						$('#userInfoModel').modal('show');
+					}
+				}
+					
+					
+					
+					
+				
+				
+				
+				//点击修改按钮
+				function openUserLogInModel(){
+					//基本信息模态框
+					var userName="${sessionScope.userName}";
+					if(userName==""||userName==null){
+						alert("您还没有登录哦！");
+					}
+					else{
+						$('#userLogInModel').modal('show');
+					} 
+					/* $('#userLogInModel').modal('show'); */
+				}
+					
+					
+					
+				</script>
+				
+		<!-- ==================================     资料修改，信息显示模态框和script        ========================== -->		
+				
+	<!-- ========================    为避免影响其他地方的布局，在body里的最外层写模态框    =================== -->	
+
+<!--====================  头像模态框                  ================ -->
+<div id="userImgModel" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">修改头像</h4>
+      </div>
+      <div class="modal-body">
+      	
+      	<!-- 上传文件必须加上 enctype="multipart/form-data"和 method="post"（主要是后台都是post接收） 。否则会报500 -->
+      	<!-- <input type="file" name="userImg">必须指定name且与后台接收参数名称一致 -->
+      	
+      	<form id="updateUserLogInForm" enctype="multipart/form-data" >
+		  <div class="form-group">
+		    <label for="exampleInputFile">头像</label>
+		    <input type="hidden" class="form-control" name="userid" value="${userid}"  >
+		    <input  type="file" id="file_img" name="userImg" id="exampleInputFile">
+		    <p class="help-block">选择头像，请选择jpg、gif、bmp、png等图片文件，文件最大不超过4M，否则可能会上传失败！</p>
+		  </div>
+		</form> 
+		  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" style="background-color:#B3B3B3" data-dismiss="modal">取消</button>
+        <button type="button" onclick="updateUserImage()" class="btn btn-default" style="margin-bottom: 10px;">上传</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+
+function updateUserImage(){
+	var str = document.getElementById("file_img").value;
+	if(str.length==0)
+	{
+	alert("您未选择文件或文件名有误！");
+	}
+	else{
+		
+		$.ajax({  
+		    url: "userImageUpdate",  
+		    type: 'POST',  
+		    cache: false,  
+		    data: new FormData($("#updateUserLogInForm")[0]),  
+		    processData: false,  
+		    contentType: false,  
+		    success: function (data){  
+		    		if(data=200){
+						//成功
+						$('#userImgModel').modal('hide');
+						//重新定位到首页，刷新头像
+						parent.location.href="index";
+		    			alert("修改成功");
+		    		}
+					
+		    }, 
+		    error: function (data) {
+					alert("服务器出错了,请等待作者修复或留言反馈！");
+		    }  
+		}); 
+	}
+}
+</script>
+
+
+<!--====================  详细信息模态框                  ================ -->	
+	
+<div id="userInfoModel" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">用户详情</h4>
+      </div>
+      <div class="modal-body">
+      	
+      	
+      	
+        <p>正在改用新的数据提交方式，请稍后。。。</p>
+        
+        
+        
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" style="background-color:#B3B3B3" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-default" style="margin-bottom: 10px;">上传</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+		
+		
+		
+<!--==================== 基本信息模态框                  ================ -->
+<div id="userLogInModel" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">基本信息</h4>
+      </div>
+      <div class="modal-body">
+      	
+      	
+      	<form id="updateUserLogInForm">
+      		<div class="form-group">
+		    <label for="userId">id</label>
+		    <%-- <input type="hidden" class="form-control" name="userid" value="${userid}" > --%>
+		   <%--  <input type="text" class="form-control" value="${userid}" disabled placeholder="id"> --%>
+		  </div>
+		  <div class="form-group">
+		    <label for="userName">用户名</label>
+		    <input type="text" class="form-control" value="${userName }" name="userName" required placeholder="请输入你的用户名">
+		  </div>
+		  <div class="form-group">
+		    <label for="userPhone">手机号</label>
+		    <input type="text" class="form-control" value="${userPhone }" name="userPhone" placeholder="请输入你的手机号">
+		  </div>
+		  <div class="form-group">
+		    <label for="userEmail">邮箱</label>
+		    <input type="text" class="form-control" value="${userEmail }" name="userEmail" required placeholder="请输入你的邮箱地址">
+		  </div>
+		  <div class="form-group">
+		    <label for="userDescribe">个性签名</label>
+		    <input type="text" class="form-control" value="${userDescribe }" name="userDescribe" placeholder="请输入你的个性签名">
+		  </div>
+		</form>
+		<!-- 修改密码 -->
+		<a href="/html/404.html"><button type="button"  class="btn btn-default" style="margin-left: 40%;">修改密码请点我</button></a>
+		        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" style="background-color:#B3B3B3" data-dismiss="modal">取消</button>
+        <button type="button" onclick="updateUserLogin()" class="btn btn-default" style="margin-bottom: 10px;">上传</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script type="text/javascript">
+	function updateUserLogin(){
+		alert("稍等，代码马上完成！");
+			/* $.post('updateUserLoginNew',$('#updateUserLogInForm').serialize(),function(data){
+				if(data=='true'){
+					//成功
+					$('#addModel').modal('hide');
+					//使用js代码发送一个同步请求
+					parent.location.href="index";
+				}else{
+					alert('修改失败');
+				}
+			},'text'); */
+		
+		
+		
+	}
+	
+</script>
+		
+		
+		
+		
+	<!-- ========================    为避免影响其他地方的布局，上面写模态框    =================== -->		
+		
 		<script>
 			var toggle = true;
 

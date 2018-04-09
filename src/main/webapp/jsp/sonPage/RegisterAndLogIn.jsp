@@ -22,7 +22,7 @@
 		.main1{
 			width: 100%;
 			opacity:0.8;
-			background-image: url("/myImages/bg/bg02.jpg");
+			background-image: url("/myImages/bg/bg04.jpg");
 			margin:0 auto;
 			padding:0 atuo;
 			text-align: center;
@@ -350,19 +350,18 @@
 				</p>
 			<script type="text/javascript">
 				function login(){
-					
 					$.post('login',$('#loginForm').serialize(),function(data){
-						
-
 						if(data=="0"){
-							alert("欢迎登录，我的小可爱！")
 							 parent.location.href="index";
 						}
 						if(data=="1"){
-							alert("这是一个未注册过的邮箱，请重新输入  或者  去注册！");
+							alert("Σ(ﾟдﾟlll)这是一个未注册过的邮箱，请重新输入  或者  去注册！");
 						}
 						if(data=="2"){
-							alert("邮箱或密码错误，请重新输入！");
+							alert("(╬◣д◢)邮箱或密码错误，请重新输入！");
+						}
+						if(data=="3"){
+							alert("ヽ(#`Д´)ﾉ你个大猪蹄子，认真填写表单啊喂！");
 						}
 						
 					},'text');
@@ -372,7 +371,7 @@
 			
 			
 			<!-- 到注册页面的锚点 -->
-			<a href="javascript:void(0)"  onclick="document.getElementById('register').scrollIntoView();"><button type="button" class="btn btn-info"  style="margin-top: 40px;">去注册</button></a>
+			<a href="javascript:void(0)"  onclick="document.getElementById('register').scrollIntoView();"><button type="button" class="btn btn-info"  style="margin-top: 40px;">光速注册</button></a>
 		</div>
 		
 		
@@ -436,7 +435,7 @@
 					</li>
 					
 					<li>
-						<button type="button" onclick="register()"  class="btn btn-primary">ajax提交</button>
+						<button type="button" onclick="register()"  class="btn btn-primary">开始交易ヽ(･ω･´ﾒ)</button>
 						<button type="reset" class="btn btn-default" >重置</button>
 						
 					</li>
@@ -448,13 +447,17 @@
 				
 				$.post('register',$('#form1').serialize(),function(data){
 					if(data=="0"){
-						alert("注册成功,去登陆吧！");
+						alert("注册成功,去登陆吧！( • ̀ω•́ )✧");
+						$('#form1')[0].reset();
 					}
 					if(data=="1"){
-						alert("邮箱已被使用，请重新输入");
+						alert("邮箱已被使用，请重新输入ಠ╭╮ಠ ");
 					}
 					if(data=="2"){
-						alert("作者的垃圾代码出错了");
+						alert("作者的垃圾代码出错了눈v눈");
+					}
+					if(data=="3"){
+						alert("ヽ(#`Д´)ﾉ你个大猪蹄子，认真填写表单啊喂！");
 					}
 					
 				},'text');

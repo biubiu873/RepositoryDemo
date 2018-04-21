@@ -65,7 +65,7 @@
 							<div class="main-search">
 								
 								<form>
-									<input type="text" value="Search" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '寻找你的那个ta';}" class="text" />
+									<input type="text" value="Search" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '本站搜索';}" class="text" />
 									<input type="submit" value="">
 								</form>
 								<div class="close"><p style="padding-top:4px;text-align:center; color: #E0FFFF;font-size: 13px;font-weight:100;">关闭</p></div>
@@ -225,7 +225,7 @@
 						
 						
 						
-					<iframe src="/jsp/sonPage/QuestionAndAnswer.jsp" frameborder="0" scrolling="yes" height="100%" width="100%"></iframe>
+					<iframe src="/jsp/sonPage/QuestionAndAnswer.jsp" style="margin: 0 auto;" frameborder="0" scrolling="yes" height="100%" width="100%"></iframe>
 					
 					
 						
@@ -261,9 +261,9 @@
 					%>
 					
 					<!-- 头像 -->
-					<a href="#" onclick="openUserImgModel()"><img style="width: 50px;height: 50px;" src="/myImages/userImages/${userImg}"></a>
+					<a href="#" onclick="openUserImgModel()"><img alt="点击选择头像" style="width: 50px;height: 50px;" src="/myImages/userImages/${userImg}"></a>
 					
-					<a href="#" onclick="openUserInfoModel()"><span class="name-caret"><a href="registerAndLogIn">${loginflag}</a>&nbsp;${userName}</span></a>
+					<a href="#" onclick="openUserInfoModel()"><span class="name-caret">&nbsp;${userName}</span></a><a href="registerAndLogIn">${loginflag}</a>
 					<!-- 签名 -->
 					<p>${userDescribe }</p>
 					
@@ -284,11 +284,11 @@
 					<ul id="menu">
 					
 						<li>
-							<a href="typography.html"><i class="lnr lnr-pencil"></i> <span>&nbsp;发布</span></a>
+							<a href="goEdit" target="_blank"><i class="lnr lnr-pencil"></i> <span>&nbsp;发布</span></a>
 						</li>
 						
 						<li>
-							<a href="index.html"><i class="fa fa-tachometer"></i><span>&nbsp;回答</span> </a>
+							<a href="index.html"><i class="fa fa-tachometer"></i><span>&nbsp;历史</span> </a>
 						</li>
 						
 						<li id="menu-academico">
@@ -531,30 +531,29 @@ function updateUserImage(){
       	
       	
       	<form id="updateUserLogInForm">
-      		<div class="form-group">
+      	  <div class="form-group">
 		    <label for="userId">id</label>
-		    <%-- <input type="hidden" class="form-control" name="userid" value="${userid}" > --%>
-		   <%--  <input type="text" class="form-control" value="${userid}" disabled placeholder="id"> --%>
+		   	<input type="text" id="Upuserid" class="form-control" value="${userid}"  name="userid" disabled placeholder="id">
 		  </div>
 		  <div class="form-group">
 		    <label for="userName">用户名</label>
-		    <input type="text" class="form-control" value="${userName }" name="userName" required placeholder="请输入你的用户名">
+		    <input type="text" id="UpuserName" class="form-control" value="${userName }" name="userName" required placeholder="请输入你的用户名">
 		  </div>
 		  <div class="form-group">
 		    <label for="userPhone">手机号</label>
-		    <input type="text" class="form-control" value="${userPhone }" name="userPhone" placeholder="请输入你的手机号">
+		    <input type="text" id="UpuserPhone" class="form-control" value="${userPhone }" name="userPhone" placeholder="请输入你的手机号">
 		  </div>
 		  <div class="form-group">
 		    <label for="userEmail">邮箱</label>
-		    <input type="text" class="form-control" value="${userEmail }" name="userEmail" required placeholder="请输入你的邮箱地址">
+		    <input type="text" id="UpuserEmail" class="form-control" value="${userEmail }" name="userEmail" required placeholder="请输入你的邮箱地址">
 		  </div>
 		  <div class="form-group">
 		    <label for="userDescribe">个性签名</label>
-		    <input type="text" class="form-control" value="${userDescribe }" name="userDescribe" placeholder="请输入你的个性签名">
+		    <input type="text" id=UpuserDescribe class="form-control" value="${userDescribe }" name="userDescribe" placeholder="请输入你的个性签名">
 		  </div>
 		</form>
 		<!-- 修改密码 -->
-		<a href="/html/404.html"><button type="button"  class="btn btn-default" style="margin-left: 40%;">修改密码请点我</button></a>
+		<a href="/html/404.html" target="_blank"><button type="button"  class="btn btn-default" style="margin-left: 40%;">修改密码请点我</button></a>
 		        
       </div>
       <div class="modal-footer">
@@ -568,8 +567,12 @@ function updateUserImage(){
 
 <script type="text/javascript">
 	function updateUserLogin(){
-		alert("稍等，代码马上完成！");
-			/* $.post('updateUserLoginNew',$('#updateUserLogInForm').serialize(),function(data){
+		 var userEmail = document.getElementById("UpuserEmail").value; 
+		 var userName = document.getElementById("UpuserName").value; 
+		 var userid = document.getElementById("Upuserid").value; 
+		
+		 alert(userEmail+userName+userid);
+			$.post('updateUserLoginNew',$('#updateUserLogInForm').serialize(),function(data){
 				if(data=='true'){
 					//成功
 					$('#addModel').modal('hide');
@@ -578,7 +581,7 @@ function updateUserImage(){
 				}else{
 					alert('修改失败');
 				}
-			},'text'); */
+			},'text');
 		
 		
 		

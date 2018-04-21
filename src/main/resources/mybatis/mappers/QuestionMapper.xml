@@ -19,6 +19,56 @@
     question_id, user_id, anwer_id, question_type, question_content, question_title, 
     question_img, question_time, subscribe_number, great_number, bad_number, question_status
   </sql>
+  
+  <!-- 根据用户id和questiontitle返回question_id -->
+  <select id="queryQuestionByUserIdAndQuestionTitle" resultType="int">
+  	select question_id from tb_question where user_id=#{user_id} and question_title=#{question_title}
+  </select>
+  
+  <!-- 根据某个信息查是否有该记录 -->
+  <select id="queryQuetionByQeustion" parameterType="cn.fcr.qa3.pojo.Question" resultType="int">
+  	select count(*) from tb_question 
+  		<where>
+	  		<if test="questionId !=null and questionId !=''">
+	  			and question_id=#{questionId}
+	  		</if>
+	  		<if test="userId !=null and userId !=''">
+	  			and user_id=#{userId}
+	  		</if>
+	  		<if test="anwerId !=null and anwerId !=''">
+	  			and anwer_id=#{anwerId}
+	  		</if>
+	  		<if test="questionType !=null and questionType !=''">
+	  			and question_type=#{questionType}
+	  		</if>
+	  		<if test="questionContent !=null and questionContent !=''">
+	  			and question_content=#{questionContent}
+	  		</if>
+	  		<if test="questionTitle !=null and questionTitle !=''">
+	  			and question_title=#{questionTitle}
+	  		</if>
+	  		<if test="questionImg !=null and questionImg !=''">
+	  			and question_img=#{questionImg}
+	  		</if>
+	  		<if test="questionTime !=null and questionTime !=''">
+	  			and question_time=#{questionTime}
+	  		</if>
+	  		<if test="subscribeNumber !=null and subscribeNumber !=''">
+	  			and subscribe_number=#{subscribeNumber}
+	  		</if>
+	  		<if test="greatNumber !=null and greatNumber !=''">
+	  			and great_number=#{greatNumber}
+	  		</if>
+	  		<if test="badNumber !=null and badNumber !=''">
+	  			and bad_number=#{badNumber}
+	  		</if>
+	  		<if test="questionStatus !=null and questionStatus !=''">
+	  			and question_status=#{questionStatus}
+	  		</if>
+  	</where>
+  </select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -37,7 +87,7 @@
       )
     values (#{questionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{anwerId,jdbcType=INTEGER}, 
       #{questionType,jdbcType=VARCHAR}, #{questionContent,jdbcType=VARCHAR}, #{questionTitle,jdbcType=VARCHAR}, 
-      #{questionImg,jdbcType=VARCHAR}, #{questionTime,jdbcType=TIMESTAMP}, #{subscribeNumber,jdbcType=INTEGER}, 
+      #{questionImg,jdbcType=VARCHAR}, now(), #{subscribeNumber,jdbcType=INTEGER}, 
       #{greatNumber,jdbcType=INTEGER}, #{badNumber,jdbcType=INTEGER}, #{questionStatus,jdbcType=VARCHAR}
       )
   </insert>

@@ -101,9 +101,9 @@ public class UserServiceImpl implements UserService{
 		userLogin.setUserPhone(userPhone);
 		userLogin.setUserEmail(userEmail);
 		userLogin.setUserDescribe(userDescribe);
-		
+		System.out.println(userId+"在修改用户信息"+"结果代码：");
 		int n=userLoginMapper.updateByPrimaryKeySelective(userLogin);
-		
+		System.out.print(n);
 		return n;
 	}
 

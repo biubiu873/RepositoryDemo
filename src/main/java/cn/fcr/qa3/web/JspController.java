@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.fcr.qa3.pojo.UserInfo;
 import cn.fcr.qa3.pojo.UserLogin;
@@ -27,6 +28,11 @@ public class JspController {
 	
 	@Autowired
 	public UserService userService;
+	
+	
+	
+	
+	
 	
 	
 	//使用ajax提交注册信息

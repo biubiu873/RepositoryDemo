@@ -193,14 +193,14 @@
 	  		{  	
 
 	  			divname.innerHTML='<font class="tips_false">长度是1~12个字符</font>';
-
-	  		     
+					
+	  		     return false;
 
 	  		}else{  
 
 	  		    divname.innerHTML='<font class="tips_true">输入正确</font>';
 
-	  		   
+	  		   return true;
 
 	  		}  
 
@@ -223,7 +223,9 @@
 			if(psd1.length<6 || psd1.length>12){   
 
 				divpassword1.innerHTML='<font class="tips_false">长度错误</font>';
-
+				
+				return false;
+				
 			}else
 
 				{   
@@ -260,7 +262,7 @@
 
 					divpassword1.innerHTML='<font class="tips_false">密码必须是字母数字的组合</font>'; 
 
-					 
+					 return false;
 
 					}else{
 
@@ -268,7 +270,7 @@
 
 					divpassword1.innerHTML='<font class="tips_true">输入正确</font>';
 
-					 
+					 return true;
 
 					}  
 
@@ -285,10 +287,14 @@
 				if(form1.yourpass.value!=form1.yourpass2.value) { 
 
 				     divpassword2.innerHTML='<font class="tips_false">您两次输入的密码不一样</font>';
+					
+					return false;
 
 				} else { 
 
 				     divpassword2.innerHTML='<font class="tips_true">输入正确</font>';
+					
+					return true;
 
 				}
 
@@ -309,13 +315,15 @@
 					  {
 
 					  	divmail.innerHTML='<font class="tips_false">输入错误</font>' ;
-
+						
+					  	return false;
 					  }
 
 					else {
 
 						divmail.innerHTML='<font class="tips_true">输入正确</font>' ;
-
+						
+						return true;
 					}
 
 		}
@@ -445,23 +453,30 @@
 			<script type="text/javascript">
 			function register(){
 				
-				$.post('register',$('#form1').serialize(),function(data){
-					if(data=="0"){
-						alert("注册成功,去登陆吧！( • ̀ω•́ )✧");
-						$('#form1')[0].reset();
-					}
-					if(data=="1"){
-						alert("邮箱已被使用，请重新输入ಠ╭╮ಠ ");
-					}
-					if(data=="2"){
-						alert("作者的垃圾代码出错了눈v눈");
-					}
-					if(data=="3"){
-						alert("ヽ(#`Д´)ﾉ你个大猪蹄子，认真填写表单啊喂！");
-					}
-					
-				},'text');
-					
+				//判断表单是否正确填写
+				var formFlag=checkna()&&checkpsd1()&&checkpsd2()&&checkmail();
+				if(formFlag){
+				
+					$.post('register',$('#form1').serialize(),function(data){
+						if(data=="0"){
+							alert("注册成功,去登陆吧！( • ̀ω•́ )✧");
+							$('#form1')[0].reset();
+						}
+						if(data=="1"){
+							alert("邮箱已被使用，请重新输入ಠ╭╮ಠ ");
+						}
+						if(data=="2"){
+							alert("作者的垃圾代码出错了눈v눈");
+						}
+						if(data=="3"){
+							alert("ヽ(#`Д´)ﾉ你个大猪蹄子，认真填写表单啊喂！");
+						}
+						
+					},'text');
+				}
+				else{
+					alert("o(▼皿▼メ;)o  表单填写完整啊，你个大笨蛋！");
+				}
 				
 			}
 					
